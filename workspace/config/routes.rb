@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
+ root 'tweets#index'
   get 'likes/create'
-  get 'profiles/show'
-  get 'profiles/index'
-  get "profiles/:id" => "profiles#show", as: :profile
- get "profiles" => "profiles#index"
+  get "profiles/:id" => 'profiles#show', as: :profile
+  get "profiles" => 'profiles#index'
 
-   devise_for :users
+  devise_for :users
+  
   resources :tweets do
     resource :like
   end
 
   resources :relationships
-
-  root 'tweets#index'
 
   get "feed" => "profiles#feed"
 
@@ -71,4 +69,4 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
